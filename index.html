@@ -163,12 +163,13 @@
                 <span class="text-2xl font-bold text-blue-300">Solutions</span>
             </a>
             
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex space-x-6 items-center">
                 <a href="#home" class="text-white hover:text-blue-200 transition">Home</a>
                 <a href="#services" class="text-white hover:text-blue-200 transition">Services</a>
                 <a href="#about" class="text-white hover:text-blue-200 transition">About</a>
                 <a href="#portfolio" class="text-white hover:text-blue-200 transition">Portfolio</a>
                 <a href="#testimonials" class="text-white hover:text-blue-200 transition">Testimonials</a>
+                <a href="#quote" class="bg-white text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg transition font-medium">Get Quote</a>
                 <a href="#contact" class="text-white hover:text-blue-200 transition">Contact</a>
             </div>
             
@@ -359,7 +360,183 @@
             </div>
         </div>
     </section>
-    
+    <!-- Quote Section - Add this after the Stats Section and before the About Section -->
+<section id="quote" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-fadeIn">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Request a Quote</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Fill out the form below to receive a detailed quote for your project. We'll get back to you within 48 hours.</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+            <!-- Form Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-800 py-6 px-8">
+                <h3 class="text-xl font-bold text-white">Project Quote Request</h3>
+                <p class="text-blue-100 mt-1">Let us know what you need and we'll provide a customized quote</p>
+            </div>
+            
+            <!-- Quote Form -->
+            <form id="quoteForm" class="p-8">
+                <!-- Client Information -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold mb-4 text-gray-800 border-b border-gray-200 pb-2">Client Information</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="john@example.com" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="+1234567890">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                            <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Your Company">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Requirements -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-semibold mb-4 text-gray-800 border-b border-gray-200 pb-2">Project Requirements</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="project-type" class="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
+                            <select id="project-type" name="project-type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                                <option value="">-- Select a project type --</option>
+                                <option value="website">Website Development</option>
+                                <option value="ecommerce">E-commerce Website</option>
+                                <option value="webapp">Web Application</option>
+                                <option value="mobile">Mobile App Development</option>
+                                <option value="redesign">Website Redesign</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-1">Budget Range</label>
+                            <select id="budget" name="budget" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                <option value="">-- Select budget range --</option>
+                                <option value="less-5k">Less than $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-20k">$10,000 - $20,000</option>
+                                <option value="20k-plus">$20,000+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeline" class="block text-sm font-medium text-gray-700 mb-1">Timeline</label>
+                            <select id="timeline" name="timeline" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                <option value="">-- Select timeline --</option>
+                                <option value="asap">ASAP</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="1-3-months">1-3 months</option>
+                                <option value="3-plus-months">3+ months</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="hear-about" class="block text-sm font-medium text-gray-700 mb-1">How did you hear about us?</label>
+                            <select id="hear-about" name="hear-about" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                <option value="">-- Select option --</option>
+                                <option value="search">Search Engine</option>
+                                <option value="social">Social Media</option>
+                                <option value="referral">Referral</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Features Section -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Features Required</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            <div class="flex items-start">
+                                <input id="responsive-design" name="features[]" type="checkbox" value="responsive-design" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="responsive-design" class="ml-2 text-sm text-gray-700">Responsive Design</label>
+                            </div>
+                            <div class="flex items-start">
+                                <input id="cms" name="features[]" type="checkbox" value="cms" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="cms" class="ml-2 text-sm text-gray-700">Content Management</label>
+                            </div>
+                            <div class="flex items-start">
+                                <input id="ecommerce-feature" name="features[]" type="checkbox" value="ecommerce" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="ecommerce-feature" class="ml-2 text-sm text-gray-700">E-commerce</label>
+                            </div>
+                            <div class="flex items-start">
+                                <input id="seo" name="features[]" type="checkbox" value="seo" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="seo" class="ml-2 text-sm text-gray-700">SEO Optimization</label>
+                            </div>
+                            <div class="flex items-start">
+                                <input id="analytics" name="features[]" type="checkbox" value="analytics" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="analytics" class="ml-2 text-sm text-gray-700">Analytics Integration</label>
+                            </div>
+                            <div class="flex items-start">
+                                <input id="maintenance" name="features[]" type="checkbox" value="maintenance" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
+                                <label for="maintenance" class="ml-2 text-sm text-gray-700">Maintenance Plan</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Description -->
+                <div class="mb-8">
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Project Description</label>
+                    <textarea id="description" name="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Please describe your project requirements, goals, and any specific features you need..."></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="bg-blue-600 text-white py-3 px-8 rounded-lg shadow hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">Submit Quote Request</button>
+                </div>
+            </form>
+            
+            <!-- Price Ranges -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-t border-gray-200">
+                <h4 class="text-lg font-semibold mb-4 text-gray-800">Estimated Price Ranges</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h5 class="font-medium text-gray-700 mb-2">Website Development</h5>
+                        <ul class="space-y-1">
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">Basic Website (3-5pages)</span>
+                                <span class="text-sm font-medium">KSh 30,000 - 50,000</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">Business Website (7-15 pages)</span>
+                                <span class="text-sm font-medium">KSh 60,000 - 100,000</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">E-commerce Website</span>
+                                <span class="text-sm font-medium">KSh 100,000 - 200,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-medium text-gray-700 mb-2">Additional Services</h5>
+                        <ul class="space-y-1">
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">Custom Web Applications</span>
+                                <span class="text-sm font-medium">KSh 100,000+</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">Mobile App Development</span>
+                                <span class="text-sm font-medium">KSh 200,000+</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-sm text-gray-600">Annual Maintenance</span>
+                                <span class="text-sm font-medium">KSh 12,000 - 24,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">* All estimates are based on typical project requirements. Your detailed quote will be customized based on your specific needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- About Section -->
     <section id="about" class="py-16 bg-gray-100">
         <div class="container mx-auto px-6">
@@ -772,6 +949,228 @@
             </div>
         </div>
     </section>
+    <!-- Map Component - Add this to the Contact Section -->
+<div class="w-full h-96 rounded-lg overflow-hidden shadow-lg mt-8 animate-fadeIn">
+    <div id="contact-map" class="w-full h-full">
+        <!-- The map will be initialized here by JavaScript -->
+    </div>
+</div>
+
+<!-- Map JavaScript - Add this to the bottom of your page, before the closing body tag -->
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of your business - replace with your actual coordinates
+        const businessLocation = { lat: -1.102554, lng: 37.013193 }; // This is set to Juja, Kenya based on your address
+        
+        // The map, centered at your business location
+        const map = new google.maps.Map(document.getElementById("contact-map"), {
+            zoom: 15,
+            center: businessLocation,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: [
+                {
+                    "featureType": "all",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "weight": "2.00"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "all",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#9c9c9c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "all",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape.man_made",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 45
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#eeeeee"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#7b7b7b"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "simplified"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#46bcec"
+                        },
+                        {
+                            "visibility": "on"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#c8d7d4"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#070707"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                }
+            ]
+        });
+        
+        // The marker, positioned at your business
+        const marker = new google.maps.Marker({
+            position: businessLocation,
+            map: map,
+            title: "Tech Solutions",
+            animation: google.maps.Animation.DROP
+        });
+        
+        // Info window content
+        const contentString = 
+            '<div class="p-2">' +
+                '<h3 class="font-bold text-blue-600 mb-1">Tech Solutions</h3>' +
+                '<p class="text-sm">V2V7+3J Juja, Kenya</p>' +
+                '<p class="text-sm">+(254)705893137</p>' +
+                '<a href="mailto:info@techsolutions.com" class="text-sm text-blue-600">info@techsolutions.com</a>' +
+            '</div>';
+        
+        // Create info window
+        const infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        
+        // Open info window when marker is clicked
+        marker.addListener("click", () => {
+            infowindow.open(map, marker);
+        });
+        
+        // Show info window by default
+        infowindow.open(map, marker);
+    }
+</script>
     
     <!-- Newsletter Section -->
     <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-800 text-white">
@@ -1721,7 +2120,8 @@ window.websiteUtils = {
     }
 };
 </script>
-
+<!-- Google Maps Script - Add this before the closing body tag -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf4F8kag3WrwMIy8_L6yP3YPtSZzQDDH8&callback=initMap" async defer></script>
 <!-- Also fix your image placeholder URLs -->
 <!-- Find and replace any references to via.placeholder.com with placehold.co -->
 <!-- Example: -->

@@ -133,13 +133,13 @@
             display: inline-block;
         }
         
-        header#home {
-            background: linear-gradient(to right, #1a237e, #311b92);
-        }
-        
-        html.light header#home {
-            background: linear-gradient(to right, #3949ab, #5e35b1);
-        }
+	header#home {
+	    background: #000000; /* Solid black background */
+	}
+	
+	html.light header#home {
+	    background: #000000; /* Keep black background even in light mode */
+	}
         
         /* Mobile menu */
         #mobile-menu {
@@ -1450,7 +1450,7 @@
                             }
                         },
                         "opacity": {
-                            "value": 0.5,
+                            "value": 0.7,
                             "random": true,
                             "anim": {
                                 "enable": true,

@@ -1,13 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEV WEBSITE</title>
+    <title>Viventra Technologies</title>
+    <!-- Import Inter font (Apple-like alternative) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
+        /* Firebase Studio Theme Variables */
+        :root {
+            /* Firebase Studio Theme Colors - Dark Mode */
+            --firebase-bg: #121212;
+            --firebase-card: #1e1e1e;
+            --firebase-input: #262626;
+            --firebase-yellow: #ffca28;
+            --firebase-amber: #ffa000;
+            --firebase-red: #f57c00;
+            --firebase-border: #383838;
+            --firebase-text: #ffffff;
+            --firebase-text-secondary: #777777;
+            
+            /* Firebase Studio Shadows */
+            --firebase-glow: 0 0 15px rgba(255, 130, 27, 0.15);
+            
+            /* Firebase Studio Border Radius */
+            --firebase-radius: 0.75rem;
+            
+            /* Firebase Studio Gradients */
+            --firebase-gradient: linear-gradient(45deg, #ffca28, #f57c00);
+            --firebase-gradient-text: linear-gradient(to right, #ffca28, #f57c00);
+            --firebase-glow-bg: radial-gradient(circle at top right, rgba(255, 102, 0, 0.1), rgba(0, 0, 0, 0) 50%),
+                                radial-gradient(circle at bottom left, rgba(255, 192, 0, 0.1), rgba(0, 0, 0, 0) 50%);
+            
+            /* Light Mode Variants */
+            --firebase-light-bg: #f8f9fa;
+            --firebase-light-card: #ffffff;
+            --firebase-light-input: #f1f3f5;
+            --firebase-light-border: #e9ecef;
+            --firebase-light-text: #212529;
+            --firebase-light-text-secondary: #6c757d;
+            --firebase-light-glow: 0 0 15px rgba(255, 130, 27, 0.1);
+            --firebase-light-glow-bg: radial-gradient(circle at top right, rgba(255, 102, 0, 0.05), rgba(255, 255, 255, 0) 50%),
+                                     radial-gradient(circle at bottom left, rgba(255, 192, 0, 0.05), rgba(255, 255, 255, 0) 50%);
+        }
+
+        /* Base styling with Inter font */
+        body, html {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
         /* Preloader */
         #preloader {
             position: fixed;
@@ -15,52 +59,88 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffffff;
+            background-color: var(--firebase-bg);
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: opacity 0.5s ease;
         }
+
+        html.light #preloader {
+            background-color: var(--firebase-light-bg);
+        }
         
-        /* Dark mode transitions */
-        body, .nav-sticky, a, span, button, #mobile-menu, #mobile-menu-overlay {
+        /* Dark mode styling (Firebase style) */
+        body {
+            background-color: var(--firebase-bg);
+            background-image: var(--firebase-glow-bg);
+            color: var(--firebase-text);
             transition: all 0.3s ease;
         }
         
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #121826;
-            color: #e2e8f0;
+        html.light body {
+            background-color: var(--firebase-light-bg);
+            background-image: var(--firebase-light-glow-bg);
+            color: var(--firebase-light-text);
         }
         
-        body.dark-mode .bg-white {
-            background-color: #1f2937 !important;
+        .bg-white {
+            background-color: var(--firebase-card) !important;
         }
         
-        body.dark-mode .bg-gray-100 {
+        html.light .bg-white {
+            background-color: var(--firebase-light-card) !important;
+        }
+        
+        .bg-gray-100 {
             background-color: #111827 !important;
         }
         
-        body.dark-mode .text-gray-800 {
-            color: #e2e8f0 !important;
+        html.light .bg-gray-100 {
+            background-color: #f3f4f6 !important;
         }
         
-        body.dark-mode .text-gray-600 {
-            color: #cbd5e0 !important;
+        .text-gray-800 {
+            color: var(--firebase-text) !important;
         }
         
-        body.dark-mode .border-gray-200 {
-            border-color: #374151 !important;
+        html.light .text-gray-800 {
+            color: var(--firebase-light-text) !important;
         }
-        /* Add this new rule for the header gradient in dark mode */
-        body.dark-mode header#home {
+        
+        .text-gray-600 {
+            color: var(--firebase-text-secondary) !important;
+        }
+        
+        html.light .text-gray-600 {
+            color: var(--firebase-light-text-secondary) !important;
+        }
+        
+        .border-gray-200 {
+            border-color: var(--firebase-border) !important;
+        }
+        
+        html.light .border-gray-200 {
+            border-color: var(--firebase-light-border) !important;
+        }
+
+        .gradient-text {
+            background: var(--firebase-gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        header#home {
             background: linear-gradient(to right, #1a237e, #311b92);
         }
-        /* Make sure particles container adjusts properly in dark mode */
-        body.dark-mode #particles-js {
-            opacity: 0.8;
+        
+        html.light header#home {
+            background: linear-gradient(to right, #3949ab, #5e35b1);
         }
+        
         /* Mobile menu */
         #mobile-menu {
             position: fixed;
@@ -68,15 +148,16 @@
             right: -300px;
             width: 300px;
             height: 100%;
-            background-color: #ffffff;
+            background-color: var(--firebase-card);
             z-index: 999;
             overflow-y: auto;
             transition: right 0.3s ease;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
         }
         
-        body.dark-mode #mobile-menu {
-            background-color: #1f2937;
+        html.light #mobile-menu {
+            background-color: var(--firebase-light-card);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
         
         #mobile-menu.active {
@@ -96,6 +177,10 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         
+        html.light #mobile-menu-overlay {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
         #mobile-menu-overlay.active {
             opacity: 1;
             visibility: visible;
@@ -108,6 +193,7 @@
             right: 20px;
             z-index: 99;
             transition: opacity 0.3s ease;
+            background-image: var(--firebase-gradient);
         }
         
         /* Animation on scroll */
@@ -130,6 +216,13 @@
             width: 100%;
             z-index: 100;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--firebase-bg);
+            box-shadow: var(--firebase-glow);
+        }
+        
+        html.light .nav-sticky {
+            background-color: var(--firebase-light-card);
+            box-shadow: var(--firebase-light-glow);
         }
         
         /* Particles container */
@@ -147,20 +240,206 @@
             position: relative;
             z-index: 2;
         }
+
+        /* Firebase-style button */
+        .firebase-button {
+            background-image: var(--firebase-gradient);
+            color: #121212;
+            border-radius: var(--firebase-radius);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .firebase-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Firebase card style */
+        .firebase-card {
+            background-color: var(--firebase-card);
+            border-radius: var(--firebase-radius);
+            border: 1px solid var(--firebase-border);
+            overflow: hidden;
+            box-shadow: var(--firebase-glow);
+            transition: all 0.3s ease;
+        }
+        
+        html.light .firebase-card {
+            background-color: var(--firebase-light-card);
+            border: 1px solid var(--firebase-light-border);
+            box-shadow: var(--firebase-light-glow);
+        }
+
+        /* Firebase input style */
+        input, textarea, select {
+            background-color: var(--firebase-input);
+            border: 1px solid var(--firebase-border);
+            color: var(--firebase-text);
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        
+        html.light input, 
+        html.light textarea, 
+        html.light select {
+            background-color: var(--firebase-light-input);
+            border: 1px solid var(--firebase-light-border);
+            color: var(--firebase-light-text);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--firebase-text-secondary);
+        }
+        
+        html.light input::placeholder, 
+        html.light textarea::placeholder {
+            color: var(--firebase-light-text-secondary);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--firebase-amber);
+            box-shadow: 0 0 0 1px var(--firebase-amber);
+        }
+
+        /* Firebase custom header gradient */
+        .firebase-header-gradient {
+            background: linear-gradient(to right, var(--firebase-yellow), var(--firebase-red));
+        }
+        
+        /* Dark/Light Mode Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #111827;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        html.light .theme-toggle {
+            background-color: #e5e7eb;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-toggle:before {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background-image: var(--firebase-gradient);
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        html.light .theme-toggle:before {
+            left: 32px;
+        }
+        
+        .theme-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 8px;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .sun-icon, .moon-icon {
+            color: white;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        
+        html.dark .sun-icon {
+            opacity: 0.3;
+        }
+        
+        html.dark .moon-icon {
+            opacity: 1;
+        }
+        
+        html.light .sun-icon {
+            opacity: 1;
+            color: #ffa000;
+        }
+        
+        html.light .moon-icon {
+            opacity: 0.3;
+            color: #6b7280;
+        }
+        
+        /* Section Backgrounds */
+        .section-dark {
+            background-color: var(--firebase-card);
+            transition: all 0.3s ease;
+        }
+        
+        html.light .section-dark {
+            background-color: var(--firebase-light-card);
+        }
+        
+        .section-darker {
+            background-color: #111827;
+            transition: all 0.3s ease;
+        }
+        
+        html.light .section-darker {
+            background-color: #f3f4f6;
+        }
+        
+        /* Portfolio items */
+        .portfolio-item {
+            transition: all 0.3s ease;
+            background-color: var(--firebase-card);
+            border: 1px solid var(--firebase-border);
+        }
+        
+        html.light .portfolio-item {
+            background-color: var(--firebase-light-card);
+            border: 1px solid var(--firebase-light-border);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--firebase-glow);
+        }
+        
+        html.light .portfolio-item:hover {
+            box-shadow: var(--firebase-light-glow);
+        }
+        
+        /* Testimonial cards */
+        .testimonial-card {
+            background-color: var(--firebase-card);
+            border: 1px solid var(--firebase-border);
+            transition: all 0.3s ease;
+        }
+        
+        html.light .testimonial-card {
+            background-color: var(--firebase-light-card);
+            border: 1px solid var(--firebase-light-border);
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
     <!-- Preloader -->
     <div id="preloader">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600"></div>
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4" style="border-color: var(--firebase-amber);"></div>
     </div>
     
     <!-- Navigation -->
     <nav id="navbar" class="py-4 px-6 bg-transparent fixed w-full z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="logo flex items-center">
-                <span class="text-2xl font-bold text-white">Novo</span>
-                <span class="text-2xl font-bold text-blue-300">Technologies</span>
+                <span class="text-2xl font-bold text-white">Viventra</span>
+                <span class="text-2xl font-bold gradient-text">Technologies</span>
             </a>
             
             <div class="hidden md:flex space-x-6 items-center">
@@ -169,20 +448,26 @@
                 <a href="#about" class="text-white hover:text-blue-200 transition">About</a>
                 <a href="#portfolio" class="text-white hover:text-blue-200 transition">Portfolio</a>
                 <a href="#testimonials" class="text-white hover:text-blue-200 transition">Testimonials</a>
-                <a href="#quote" class="bg-white text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg transition font-medium">Get Quote</a>
+                <a href="#quote" class="firebase-button px-4 py-2 rounded-lg transition font-medium">Get Quote</a>
                 <a href="#contact" class="text-white hover:text-blue-200 transition">Contact</a>
+                
+                <!-- Dark/Light Mode Toggle -->
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="theme-icons">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </div>
+                </div>
             </div>
             
             <div class="flex items-center space-x-4">
-                <!-- Dark Mode Toggle -->
-                <button id="dark-mode-toggle" class="text-white p-2 rounded-full focus:outline-none">
-                    <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                    <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                </button>
+                <!-- Dark/Light Mode Toggle (Mobile) -->
+                <div class="theme-toggle md:hidden" id="theme-toggle-mobile">
+                    <div class="theme-icons">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </div>
+                </div>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
@@ -199,35 +484,35 @@
     <div id="mobile-menu" class="px-6 py-8">
         <div class="flex justify-between items-center mb-8">
             <a href="#" class="flex items-center">
-                <span class="text-2xl font-bold text-blue-600">Tech</span>
-                <span class="text-2xl font-bold text-gray-800">Solutions</span>
+                <span class="text-2xl font-bold text-white">Viventra</span>
+                <span class="text-2xl font-bold gradient-text ml-1">Tech</span>
             </a>
             <button id="mobile-menu-close" class="focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
         <div class="flex flex-col space-y-4">
-            <a href="#home" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Home</a>
-            <a href="#services" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Services</a>
-            <a href="#about" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">About</a>
-            <a href="#portfolio" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Portfolio</a>
-            <a href="#testimonials" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Testimonials</a>
-            <a href="#quote" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Get Quote</a>
-            <a href="#contact" class="mobile-menu-link text-gray-800 hover:text-blue-600 py-2 text-lg">Contact</a>
+            <a href="#home" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Home</a>
+            <a href="#services" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Services</a>
+            <a href="#about" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">About</a>
+            <a href="#portfolio" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Portfolio</a>
+            <a href="#testimonials" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Testimonials</a>
+            <a href="#quote" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Get Quote</a>
+            <a href="#contact" class="mobile-menu-link text-white hover:text-blue-400 py-2 text-lg">Contact</a>
         </div>
     </div>
     
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="bg-blue-600 text-white rounded-full p-3 opacity-0 transition-opacity shadow-lg focus:outline-none hover:bg-blue-700">
+    <button id="back-to-top" class="text-white rounded-full p-3 opacity-0 transition-opacity shadow-lg focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
     
     <!-- Header -->
-    <header id="home" class="bg-gradient-to-r from-blue-600 to-indigo-800 text-white min-h-screen flex items-center">
+    <header id="home" class="firebase-header-gradient text-white min-h-screen flex items-center">
         <div id="particles-js"></div>
         <div class="container mx-auto px-6 py-24 header-content">
             <div class="flex flex-col md:flex-row items-center">
@@ -235,7 +520,7 @@
                     <h1 class="text-4xl md:text-6xl font-bold mb-6">Innovative Solutions for Digital Growth</h1>
                     <p class="text-xl mb-8">We help businesses transform their digital presence and achieve sustainable growth through cutting-edge technology.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#services" class="bg-white text-blue-600 font-semibold py-3 px-8 rounded-lg shadow hover:bg-gray-100 transition text-center">Our Services</a>
+                        <a href="#services" class="firebase-button font-semibold py-3 px-8 rounded-lg shadow text-center">Our Services</a>
                         <a href="#contact" class="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-blue-600 transition text-center">Get in Touch</a>
                     </div>
                 </div>
@@ -246,7 +531,7 @@
     </header>
     
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
+    <section id="services" class="py-16 section-dark">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
@@ -255,8 +540,8 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
@@ -266,8 +551,8 @@
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
@@ -277,8 +562,8 @@
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                         </svg>
@@ -288,8 +573,8 @@
                 </div>
                 
                 <!-- Service 4 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
@@ -299,8 +584,8 @@
                 </div>
                 
                 <!-- Service 5 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                         </svg>
@@ -310,8 +595,8 @@
                 </div>
                 
                 <!-- Service 6 -->
-                <div class="bg-gray-100 rounded-lg p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
-                    <div class="text-blue-600 mb-4">
+                <div class="firebase-card p-8 hover:shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
+                    <div class="gradient-text mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
@@ -324,12 +609,12 @@
     </section>
     
     <!-- Stats Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 section-dark">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <!-- Stat 1 -->
                 <div class="p-6">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">
+                    <div class="gradient-text text-4xl font-bold mb-2">
                         <span class="count-number" data-count="250">0</span>+
                     </div>
                     <p class="text-gray-600">Clients Worldwide</p>
@@ -337,7 +622,7 @@
                 
                 <!-- Stat 2 -->
                 <div class="p-6">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">
+                    <div class="gradient-text text-4xl font-bold mb-2">
                         <span class="count-number" data-count="520">0</span>+
                     </div>
                     <p class="text-gray-600">Projects Completed</p>
@@ -345,7 +630,7 @@
                 
                 <!-- Stat 3 -->
                 <div class="p-6">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">
+                    <div class="gradient-text text-4xl font-bold mb-2">
                         <span class="count-number" data-count="15">0</span>+
                     </div>
                     <p class="text-gray-600">Years of Experience</p>
@@ -353,7 +638,7 @@
                 
                 <!-- Stat 4 -->
                 <div class="p-6">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">
+                    <div class="gradient-text text-4xl font-bold mb-2">
                         <span class="count-number" data-count="48">0</span>
                     </div>
                     <p class="text-gray-600">Team Members</p>
@@ -361,185 +646,186 @@
             </div>
         </div>
     </section>
-    <!-- Quote Section - Add this after the Stats Section and before the About Section -->
-<section id="quote" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16 animate-fadeIn">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Request a Quote</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Fill out the form below to receive a detailed quote for your project. We'll get back to you within 48 hours.</p>
-        </div>
-        
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Form Header -->
-            <div class="bg-gradient-to-r from-blue-600 to-indigo-800 py-6 px-8">
-                <h3 class="text-xl font-bold text-white">Project Quote Request</h3>
-                <p class="text-blue-100 mt-1">Let us know what you need and we'll provide a customized quote</p>
+
+    <!-- Quote Section -->
+    <section id="quote" class="py-16 section-darker">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-fadeIn">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Request a Quote</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Fill out the form below to receive a detailed quote for your project. We'll get back to you within 48 hours.</p>
             </div>
             
-            <!-- Quote Form -->
-            <form id="quoteForm" class="p-8">
-                <!-- Client Information -->
-                <div class="mb-8">
-                    <h4 class="text-lg font-semibold mb-4 text-gray-800 border-b border-gray-200 pb-2">Client Information</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="John Doe" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="john@example.com" required>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="+1234567890">
-                        </div>
-                        <div>
-                            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-                            <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Your Company">
-                        </div>
-                    </div>
+            <div class="max-w-4xl mx-auto firebase-card overflow-hidden">
+                <!-- Form Header -->
+                <div class="firebase-header-gradient py-6 px-8">
+                    <h3 class="text-xl font-bold text-black">Project Quote Request</h3>
+                    <p class="text-black opacity-75 mt-1">Let us know what you need and we'll provide a customized quote</p>
                 </div>
                 
-                <!-- Project Requirements -->
-                <div class="mb-8">
-                    <h4 class="text-lg font-semibold mb-4 text-gray-800 border-b border-gray-200 pb-2">Project Requirements</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="project-type" class="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
-                            <select id="project-type" name="project-type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
-                                <option value="">-- Select a project type --</option>
-                                <option value="website">Website Development</option>
-                                <option value="ecommerce">E-commerce Website</option>
-                                <option value="webapp">Web Application</option>
-                                <option value="mobile">Mobile App Development</option>
-                                <option value="redesign">Website Redesign</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-1">Budget Range</label>
-                            <select id="budget" name="budget" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                                <option value="">-- Select budget range --</option>
-                                <option value="less-5k">Less than $5,000</option>
-                                <option value="5k-10k">$5,000 - $10,000</option>
-                                <option value="10k-20k">$10,000 - $20,000</option>
-                                <option value="20k-plus">$20,000+</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="timeline" class="block text-sm font-medium text-gray-700 mb-1">Timeline</label>
-                            <select id="timeline" name="timeline" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                                <option value="">-- Select timeline --</option>
-                                <option value="asap">ASAP</option>
-                                <option value="1-month">Within 1 month</option>
-                                <option value="1-3-months">1-3 months</option>
-                                <option value="3-plus-months">3+ months</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="hear-about" class="block text-sm font-medium text-gray-700 mb-1">How did you hear about us?</label>
-                            <select id="hear-about" name="hear-about" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                                <option value="">-- Select option --</option>
-                                <option value="search">Search Engine</option>
-                                <option value="social">Social Media</option>
-                                <option value="referral">Referral</option>
-                                <option value="other">Other</option>
-                            </select>
+                <!-- Quote Form -->
+                <form id="quoteForm" class="p-8">
+                    <!-- Client Information -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-4 text-white border-b border-gray-200 pb-2">Client Information</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="john@example.com" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-400 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="+1234567890">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-gray-400 mb-1">Company Name</label>
+                                <input type="text" id="company" name="company" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="Your Company">
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Features Section -->
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Features Required</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                            <div class="flex items-start">
-                                <input id="responsive-design" name="features[]" type="checkbox" value="responsive-design" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="responsive-design" class="ml-2 text-sm text-gray-700">Responsive Design</label>
+                    <!-- Project Requirements -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-4 text-white border-b border-gray-200 pb-2">Project Requirements</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="project-type" class="block text-sm font-medium text-gray-400 mb-1">Project Type</label>
+                                <select id="project-type" name="project-type" class="w-full px-4 py-2 rounded-md focus:outline-none" required>
+                                    <option value="">-- Select a project type --</option>
+                                    <option value="website">Website Development</option>
+                                    <option value="ecommerce">E-commerce Website</option>
+                                    <option value="webapp">Web Application</option>
+                                    <option value="mobile">Mobile App Development</option>
+                                    <option value="redesign">Website Redesign</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                            <div class="flex items-start">
-                                <input id="cms" name="features[]" type="checkbox" value="cms" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="cms" class="ml-2 text-sm text-gray-700">Content Management</label>
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-gray-400 mb-1">Budget Range</label>
+                                <select id="budget" name="budget" class="w-full px-4 py-2 rounded-md focus:outline-none">
+                                    <option value="">-- Select budget range --</option>
+                                    <option value="less-5k">Less than $5,000</option>
+                                    <option value="5k-10k">$5,000 - $10,000</option>
+                                    <option value="10k-20k">$10,000 - $20,000</option>
+                                    <option value="20k-plus">$20,000+</option>
+                                </select>
                             </div>
-                            <div class="flex items-start">
-                                <input id="ecommerce-feature" name="features[]" type="checkbox" value="ecommerce" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="ecommerce-feature" class="ml-2 text-sm text-gray-700">E-commerce</label>
+                            <div>
+                                <label for="timeline" class="block text-sm font-medium text-gray-400 mb-1">Timeline</label>
+                                <select id="timeline" name="timeline" class="w-full px-4 py-2 rounded-md focus:outline-none">
+                                    <option value="">-- Select timeline --</option>
+                                    <option value="asap">ASAP</option>
+                                    <option value="1-month">Within 1 month</option>
+                                    <option value="1-3-months">1-3 months</option>
+                                    <option value="3-plus-months">3+ months</option>
+                                </select>
                             </div>
-                            <div class="flex items-start">
-                                <input id="seo" name="features[]" type="checkbox" value="seo" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="seo" class="ml-2 text-sm text-gray-700">SEO Optimization</label>
+                            <div>
+                                <label for="hear-about" class="block text-sm font-medium text-gray-400 mb-1">How did you hear about us?</label>
+                                <select id="hear-about" name="hear-about" class="w-full px-4 py-2 rounded-md focus:outline-none">
+                                    <option value="">-- Select option --</option>
+                                    <option value="search">Search Engine</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="referral">Referral</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                            <div class="flex items-start">
-                                <input id="analytics" name="features[]" type="checkbox" value="analytics" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="analytics" class="ml-2 text-sm text-gray-700">Analytics Integration</label>
-                            </div>
-                            <div class="flex items-start">
-                                <input id="maintenance" name="features[]" type="checkbox" value="maintenance" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mt-1">
-                                <label for="maintenance" class="ml-2 text-sm text-gray-700">Maintenance Plan</label>
+                        </div>
+                        
+                        <!-- Features Section -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Features Required</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                                <div class="flex items-start">
+                                    <input id="responsive-design" name="features[]" type="checkbox" value="responsive-design" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="responsive-design" class="ml-2 text-sm text-gray-400">Responsive Design</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input id="cms" name="features[]" type="checkbox" value="cms" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="cms" class="ml-2 text-sm text-gray-400">Content Management</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input id="ecommerce-feature" name="features[]" type="checkbox" value="ecommerce" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="ecommerce-feature" class="ml-2 text-sm text-gray-400">E-commerce</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input id="seo" name="features[]" type="checkbox" value="seo" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="seo" class="ml-2 text-sm text-gray-400">SEO Optimization</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input id="analytics" name="features[]" type="checkbox" value="analytics" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="analytics" class="ml-2 text-sm text-gray-400">Analytics Integration</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input id="maintenance" name="features[]" type="checkbox" value="maintenance" class="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500 mt-1">
+                                    <label for="maintenance" class="ml-2 text-sm text-gray-400">Maintenance Plan</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Project Description -->
-                <div class="mb-8">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Project Description</label>
-                    <textarea id="description" name="description" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Please describe your project requirements, goals, and any specific features you need..."></textarea>
-                </div>
-                
-                <!-- Submit Button -->
-                <div class="text-center">
-                    <button type="submit" class="bg-blue-600 text-white py-3 px-8 rounded-lg shadow hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">Submit Quote Request</button>
-                </div>
-            </form>
-            
-            <!-- Price Ranges -->
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-t border-gray-200">
-                <h4 class="text-lg font-semibold mb-4 text-gray-800">Estimated Price Ranges</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h5 class="font-medium text-gray-700 mb-2">Website Development</h5>
-                        <ul class="space-y-1">
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">Basic Website (3-5pages)</span>
-                                <span class="text-sm font-medium">KSh 30,000 - 50,000</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">Business Website (7-15 pages)</span>
-                                <span class="text-sm font-medium">KSh 60,000 - 100,000</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">E-commerce Website</span>
-                                <span class="text-sm font-medium">KSh 100,000 - 200,000</span>
-                            </li>
-                        </ul>
+                    
+                    <!-- Project Description -->
+                    <div class="mb-8">
+                        <label for="description" class="block text-sm font-medium text-gray-400 mb-1">Project Description</label>
+                        <textarea id="description" name="description" rows="5" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="Please describe your project requirements, goals, and any specific features you need..."></textarea>
                     </div>
-                    <div>
-                        <h5 class="font-medium text-gray-700 mb-2">Additional Services</h5>
-                        <ul class="space-y-1">
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">Custom Web Applications</span>
-                                <span class="text-sm font-medium">KSh 100,000+</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">Mobile App Development</span>
-                                <span class="text-sm font-medium">KSh 200,000+</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="text-sm text-gray-600">Annual Maintenance</span>
-                                <span class="text-sm font-medium">KSh 12,000 - 24,000</span>
-                            </li>
-                        </ul>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="firebase-button py-3 px-8 rounded-lg shadow">Submit Quote Request</button>
                     </div>
+                </form>
+                
+                <!-- Price Ranges -->
+                <div class="bg-black p-6 border-t border-gray-800">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Estimated Price Ranges</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-medium text-gray-300 mb-2">Website Development</h5>
+                            <ul class="space-y-1">
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">Basic Website (3-5pages)</span>
+                                    <span class="text-sm font-medium text-white">KSh 30,000 - 50,000</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">Business Website (7-15 pages)</span>
+                                    <span class="text-sm font-medium text-white">KSh 60,000 - 100,000</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">E-commerce Website</span>
+                                    <span class="text-sm font-medium text-white">KSh 100,000 - 200,000</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-gray-300 mb-2">Additional Services</h5>
+                            <ul class="space-y-1">
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">Custom Web Applications</span>
+                                    <span class="text-sm font-medium text-white">KSh 100,000+</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">Mobile App Development</span>
+                                    <span class="text-sm font-medium text-white">KSh 200,000+</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-sm text-gray-400">Annual Maintenance</span>
+                                    <span class="text-sm font-medium text-white">KSh 12,000 - 24,000</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">* All estimates are based on typical project requirements. Your detailed quote will be customized based on your specific needs.</p>
                 </div>
-                <p class="mt-4 text-sm text-gray-600">* All estimates are based on typical project requirements. Your detailed quote will be customized based on your specific needs.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-100">
+    <section id="about" class="py-16 section-darker">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-12 md:mb-0 animate-fadeIn">
@@ -547,29 +833,29 @@
                 </div>
                 <div class="md:w-1/2 md:pl-12 animate-fadeIn" style="animation-delay: 0.3s;">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">About Our Company</h2>
-                    <p class="text-gray-600 mb-6">Founded in 2021, Novo Technologies has been at the forefront of digital innovation, helping businesses of all sizes transform their digital presence and achieve sustainable growth.</p>
-                    <p class="text-gray-600 mb-8">Our team of experienced professionals combines technical expertise with creative thinking to deliver tailored solutions that address the unique challenges and opportunities of each client.</p>
+                    <p class="text-gray-600 mb-6">Founded in 2021 by <span class="gradient-text font-semibold">Eliud Samwel</span>, Viventra Technologies has been at the forefront of digital innovation, helping businesses of all sizes transform their digital presence and achieve sustainable growth.</p>
+                    <p class="text-gray-600 mb-6">Under the leadership of our founder and CEO Eliud Samwel, our team of experienced professionals combines technical expertise with creative thinking to deliver tailored solutions that address the unique challenges and opportunities of each client.</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Innovative Solutions</span>
                         </div>
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Expert Team</span>
                         </div>
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Client-Centered Approach</span>
                         </div>
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Quality Assurance</span>
@@ -579,9 +865,47 @@
             </div>
         </div>
     </section>
+
+    <!-- Founder Section -->
+    <section class="py-16 section-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 animate-fadeIn">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Founder</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">The visionary behind Viventra Technologies</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center firebase-card p-8">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="https://placehold.co/400x400/1e1e1e/ffffff?text=Eliud+Samwel" alt="Eliud Samwel - Founder" class="rounded-full w-48 h-48 mx-auto shadow-lg border-2" style="border-color: var(--firebase-amber);">
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-2">Eliud Samwel</h3>
+                    <p class="gradient-text text-lg mb-4">Founder & CEO</p>
+                    <p class="text-gray-600 mb-6">Eliud Samwel is a visionary entrepreneur with over 15 years of experience in technology and digital innovation. After working with several Fortune 500 companies, Eliud founded Viventra Technologies with a mission to make cutting-edge technology accessible to businesses of all sizes.</p>
+                    <p class="text-gray-600 mb-6">With expertise in software development, cloud architecture, and business strategy, Eliud leads the Viventra team in delivering transformative digital solutions that drive measurable results for our clients.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- FAQ Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 section-dark">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
@@ -591,7 +915,7 @@
             <div class="max-w-3xl mx-auto">
                 <!-- FAQ Item 1 -->
                 <div class="mb-6 animate-fadeIn">
-                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg focus:outline-none">
+                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-black hover:bg-gray-900 rounded-lg focus:outline-none">
                         <span class="text-lg font-medium text-left">What services do you offer?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -604,7 +928,7 @@
                 
                 <!-- FAQ Item 2 -->
                 <div class="mb-6 animate-fadeIn" style="animation-delay: 0.2s;">
-                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg focus:outline-none">
+                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-black hover:bg-gray-900 rounded-lg focus:outline-none">
                         <span class="text-lg font-medium text-left">How long does a typical project take?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -617,7 +941,7 @@
                 
                 <!-- FAQ Item 3 -->
                 <div class="mb-6 animate-fadeIn" style="animation-delay: 0.4s;">
-                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg focus:outline-none">
+                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-black hover:bg-gray-900 rounded-lg focus:outline-none">
                         <span class="text-lg font-medium text-left">What is your pricing structure?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -630,7 +954,7 @@
                 
                 <!-- FAQ Item 4 -->
                 <div class="mb-6 animate-fadeIn" style="animation-delay: 0.6s;">
-                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg focus:outline-none">
+                    <button class="faq-button flex justify-between items-center w-full px-4 py-3 bg-black hover:bg-gray-900 rounded-lg focus:outline-none">
                         <span class="text-lg font-medium text-left">Do you provide ongoing support?</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -645,7 +969,7 @@
     </section>
     
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-gray-100">
+    <section id="portfolio" class="py-16 section-darker">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Portfolio</h2>
@@ -654,96 +978,98 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Portfolio Item 1 -->
-                <article class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn">
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn">
                     <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHwwfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Screenshot of an e-commerce platform on a laptop screen." class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">E-Commerce Platform</h3>
                         <p class="text-gray-600 mb-4">A comprehensive e-commerce solution with integrated payment systems and inventory management.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded transition hover:bg-blue-200">Web Development</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded transition hover:bg-purple-200">UI/UX Design</span>
+                            <span class="bg-opacity-10 bg-blue-500 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
+                            <span class="bg-opacity-10 bg-purple-500 text-purple-300 text-xs font-medium px-2.5 py-0.5 rounded">UI/UX Design</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
-                </article>
+                </div>
                 
                 <!-- Portfolio Item 2 -->
-                <div class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn" style="animation-delay: 0.2s;">
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
                     <img src="https://cdn.pixabay.com/photo/2015/02/02/11/09/office-620822_1280.jpg" alt="Health & Fitness App" class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Health & Fitness App</h3>
                         <p class="text-gray-600 mb-4">A mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Mobile App</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Cloud Infrastructure</span>
+                            <span class="bg-opacity-10 bg-green-500 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Mobile App</span>
+                            <span class="bg-opacity-10 bg-yellow-500 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">Cloud Infrastructure</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
                 </div>
                 
                 <!-- Portfolio Item 3 -->
-                <div class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn" style="animation-delay: 0.4s;">
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
                     <img src="https://cdn.pixabay.com/photo/2016/11/29/09/16/architecture-1868667_1280.jpg" alt="Real Estate Platform" class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Real Estate Platform</h3>
                         <p class="text-gray-600 mb-4">A comprehensive real estate platform with property listings, virtual tours, and agent portals.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
-                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">Digital Marketing</span>
+                            <span class="bg-opacity-10 bg-blue-500 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
+                            <span class="bg-opacity-10 bg-red-500 text-red-300 text-xs font-medium px-2.5 py-0.5 rounded">Digital Marketing</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
                 </div>
                 
                 <!-- Portfolio Item 4 -->
-                <div class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn">
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn">
                     <img src="https://cdn.pixabay.com/photo/2016/04/20/08/21/mobile-1340649_1280.jpg" alt="FinTech Dashboard" class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">FinTech Dashboard</h3>
                         <p class="text-gray-600 mb-4">A secure financial analytics dashboard with real-time data visualization and reporting tools.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web Application</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">Cybersecurity</span>
+                            <span class="bg-opacity-10 bg-blue-500 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Web Application</span>
+                            <span class="bg-opacity-10 bg-indigo-500 text-indigo-300 text-xs font-medium px-2.5 py-0.5 rounded">Cybersecurity</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
                 </div>
                 
                 <!-- Portfolio Item 5 -->
-                <div class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn" style="animation-delay: 0.2s;">
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn" style="animation-delay: 0.2s;">
                     <img src="https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849825_1280.jpg" alt="Educational Platform" class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Educational Platform</h3>
                         <p class="text-gray-600 mb-4">An interactive learning management system with video courses, quizzes, and student progress tracking.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">UI/UX Design</span>
+                            <span class="bg-opacity-10 bg-blue-500 text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded">Web Development</span>
+                            <span class="bg-opacity-10 bg-purple-500 text-purple-300 text-xs font-medium px-2.5 py-0.5 rounded">UI/UX Design</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
                 </div>
                 
                 <!-- Portfolio Item 6 -->
-                <div class="rounded-lg overflow-hidden shadow-lg bg-white transition hover:shadow-xl animate-fadeIn" style="animation-delay: 0.4s;">
-                    <img src="https://unsplash.com/photos/ZKVBM2_Dp84/download?force=true&w=1920" alt="Warehouse Management" class="w-full h-56 object-cover">                        <h3 class="text-xl font-semibold mb-2">Supply Chain Management</h3>
+                <div class="portfolio-item rounded-lg overflow-hidden shadow-lg transition animate-fadeIn" style="animation-delay: 0.4s;">
+                    <img src="https://images.unsplash.com/photo-1665849096504-6c687b3f24a2?q=80&w=1173&auto=format&fit=crop" alt="Warehouse Management System" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Supply Chain Management</h3>
                         <p class="text-gray-600 mb-4">A blockchain-based supply chain tracking and management system for enterprise clients.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Cloud Infrastructure</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Enterprise Solutions</span>
+                            <span class="bg-opacity-10 bg-yellow-500 text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded">Cloud Infrastructure</span>
+                            <span class="bg-opacity-10 bg-gray-500 text-gray-300 text-xs font-medium px-2.5 py-0.5 rounded">Enterprise Solutions</span>
                         </div>
-                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 transition">View Details</a>
+                        <a href="#" class="gradient-text font-medium">View Details</a>
                     </div>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow hover:bg-blue-700 transition">View All Projects</a>
+                <a href="#" class="firebase-button py-3 px-8 rounded-lg shadow inline-block">View All Projects</a>
             </div>
         </div>
     </section>
-    
+
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
+    <section id="testimonials" class="py-16 section-dark">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
@@ -752,7 +1078,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="bg-gray-100 p-8 rounded-lg shadow-md animate-fadeIn">
+                <div class="testimonial-card p-8 rounded-lg shadow-md animate-fadeIn">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -773,9 +1099,9 @@
                         </div>
                         <span class="text-gray-600">5.0</span>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"Novo Technologies transformed our digital presence completely. Their team was professional, responsive, and delivered beyond our expectations. Our website traffic has increased by 150% since the launch."</p>
+                    <p class="text-gray-600 italic mb-6">"Viventra Technologies transformed our digital presence completely. Their team was professional, responsive, and delivered beyond our expectations. Our website traffic has increased by 150% since the launch."</p>
                     <div class="flex items-center">
-                        <img src="https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
                         <div>
                             <h4 class="font-semibold">Sarah Johnson</h4>
                             <p class="text-gray-600 text-sm">CEO, Retail Innovations</p>
@@ -784,7 +1110,7 @@
                 </div>
                 
                 <!-- Testimonial 2 -->
-                <div class="bg-gray-100 p-8 rounded-lg shadow-md animate-fadeIn" style="animation-delay: 0.2s;">
+                <div class="testimonial-card p-8 rounded-lg shadow-md animate-fadeIn" style="animation-delay: 0.2s;">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -805,9 +1131,9 @@
                         </div>
                         <span class="text-gray-600">5.0</span>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"The mobile app developed by Novo Technologieshas revolutionized how we engage with our customers. The user interface is intuitive, and the performance is exceptional. We've seen a 200% increase in user engagement."</p>
+                    <p class="text-gray-600 italic mb-6">"The mobile app developed by Viventra Technologies has revolutionized how we engage with our customers. The user interface is intuitive, and the performance is exceptional. We've seen a 200% increase in user engagement."</p>
                     <div class="flex items-center">
-                        <img src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg" alt="David Rodriguez" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
                         <div>
                             <h4 class="font-semibold">Michael Chen</h4>
                             <p class="text-gray-600 text-sm">CTO, HealthTech Solutions</p>
@@ -816,7 +1142,7 @@
                 </div>
                 
                 <!-- Testimonial 3 -->
-                <div class="bg-gray-100 p-8 rounded-lg shadow-md animate-fadeIn" style="animation-delay: 0.4s;">
+                <div class="testimonial-card p-8 rounded-lg shadow-md animate-fadeIn" style="animation-delay: 0.4s;">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400 flex mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -837,9 +1163,9 @@
                         </div>
                         <span class="text-gray-600">5.0</span>
                     </div>
-                    <p class="text-gray-600 italic mb-6">"Working with Novo Technologies on our cloud migration was seamless. Their expertise in cloud infrastructure saved us time and money. Our systems are now more secure, scalable, and perform 40% faster than before."</p>
+                    <p class="text-gray-600 italic mb-6">"Working with Viventra Technologies on our cloud migration was seamless. Their expertise in cloud infrastructure saved us time and money. Our systems are now more secure, scalable, and perform 40% faster than before."</p>
                     <div class="flex items-center">
-                        <img src="https://cdn.pixabay.com/photo/2019/02/11/20/20/woman-3990680_1280.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="https://cdn.pixabay.com/photo/2019/02/11/20/20/woman-3990680_1280.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
                         <div>
                             <h4 class="font-semibold">David Rodriguez</h4>
                             <p class="text-gray-600 text-sm">IT Director, Global Logistics Inc.</p>
@@ -851,7 +1177,7 @@
     </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
+    <section id="contact" class="py-16 section-darker">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
@@ -861,46 +1187,46 @@
             <div class="flex flex-col lg:flex-row">
                 <!-- Contact Form -->
                 <div class="lg:w-2/3 pr-0 lg:pr-8 mb-12 lg:mb-0 animate-fadeIn">
-                    <form id="contactForm" class="bg-white p-8 rounded-lg shadow-md">
+                    <form id="contactForm" class="firebase-card p-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
-                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="John Doe">
+                                <label for="contact-name" class="block text-gray-400 mb-2">Your Name</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="John Doe">
                                 <p class="text-red-500 text-sm mt-1 hidden">Error message</p>
                             </div>
                             <div>
-                                <label for="email" class="block text-gray-700 mb-2">Your Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="john@example.com">
+                                <label for="contact-email" class="block text-gray-400 mb-2">Your Email</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="john@example.com">
                                 <p class="text-red-500 text-sm mt-1 hidden">Error message</p>
                             </div>
                         </div>
                         <div class="mb-6">
-                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Project Inquiry">
+                            <label for="contact-subject" class="block text-gray-400 mb-2">Subject</label>
+                            <input type="text" id="contact-subject" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="Project Inquiry">
                             <p class="text-red-500 text-sm mt-1 hidden">Error message</p>
                         </div>
                         <div class="mb-6">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Tell us about your project or inquiry..."></textarea>
+                            <label for="contact-message" class="block text-gray-400 mb-2">Message</label>
+                            <textarea id="contact-message" rows="5" class="w-full px-4 py-2 rounded-md focus:outline-none" placeholder="Tell us about your project or inquiry..."></textarea>
                             <p class="text-red-500 text-sm mt-1 hidden">Error message</p>
                         </div>
                         <div class="mb-6">
                             <div class="flex items-center">
                                 <input type="checkbox" id="consent" class="mr-2">
-                                <label for="consent" class="text-gray-700">I consent to having this website store my information for future correspondence</label>
+                                <label for="consent" class="text-gray-400">I consent to having this website store my information for future correspondence</label>
                             </div>
                             <p class="text-red-500 text-sm mt-1 hidden">Error message</p>
                         </div>
-                        <button type="submit" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow hover:bg-blue-700 transition w-full md:w-auto">Send Message</button>
+                        <button type="submit" class="firebase-button font-semibold py-3 px-8 rounded-lg shadow w-full md:w-auto">Send Message</button>
                     </form>
                 </div>
                 
                 <!-- Contact Information -->
                 <div class="lg:w-1/3 animate-fadeIn" style="animation-delay: 0.3s;">
-                    <div class="bg-white p-8 rounded-lg shadow-md mb-6">
+                    <div class="firebase-card p-8 mb-6">
                         <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
                         <div class="flex items-start mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -910,7 +1236,7 @@
                             </div>
                         </div>
                         <div class="flex items-start mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <div>
@@ -919,17 +1245,17 @@
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
-                                <p class="text-gray-600">info@techsolutions.com</p>
+                                <p class="text-gray-600">info@viventratech.com</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="firebase-card p-8">
                         <h3 class="text-xl font-semibold mb-4">Business Hours</h3>
                         <div class="space-y-2">
                             <div class="flex justify-between">
@@ -948,255 +1274,40 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Map -->
+            <div class="w-full h-96 rounded-lg overflow-hidden shadow-lg mt-8 animate-fadeIn firebase-card">
+                <div id="contact-map" class="w-full h-full">
+                    <!-- The map will be initialized here by JavaScript -->
+                </div>
+            </div>
         </div>
     </section>
-    <!-- Map Component - Add this to the Contact Section -->
-<div class="w-full h-96 rounded-lg overflow-hidden shadow-lg mt-8 animate-fadeIn">
-    <div id="contact-map" class="w-full h-full">
-        <!-- The map will be initialized here by JavaScript -->
-    </div>
-</div>
-
-<!-- Map JavaScript - Add this to the bottom of your page, before the closing body tag -->
-<script>
-    // Initialize and add the map
-    function initMap() {
-        // The location of your business - replace with your actual coordinates
-        const businessLocation = { lat: -1.102554, lng: 37.013193 }; // This is set to Juja, Kenya based on your address
-        
-        // The map, centered at your business location
-        const map = new google.maps.Map(document.getElementById("contact-map"), {
-            zoom: 15,
-            center: businessLocation,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            styles: [
-                {
-                    "featureType": "all",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "weight": "2.00"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "geometry.stroke",
-                    "stylers": [
-                        {
-                            "color": "#9c9c9c"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text",
-                    "stylers": [
-                        {
-                            "visibility": "on"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#f2f2f2"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "landscape.man_made",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "saturation": -100
-                        },
-                        {
-                            "lightness": 45
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#eeeeee"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#7b7b7b"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "simplified"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "labels.icon",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "visibility": "off"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "all",
-                    "stylers": [
-                        {
-                            "color": "#46bcec"
-                        },
-                        {
-                            "visibility": "on"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [
-                        {
-                            "color": "#c8d7d4"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "labels.text.fill",
-                    "stylers": [
-                        {
-                            "color": "#070707"
-                        }
-                    ]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [
-                        {
-                            "color": "#ffffff"
-                        }
-                    ]
-                }
-            ]
-        });
-        
-        // The marker, positioned at your business
-        const marker = new google.maps.Marker({
-            position: businessLocation,
-            map: map,
-            title: "Novo Technologies",
-            animation: google.maps.Animation.DROP
-        });
-        
-        // Info window content
-        const contentString = 
-            '<div class="p-2">' +
-                '<h3 class="font-bold text-blue-600 mb-1">Novo Technologies</h3>' +
-                '<p class="text-sm">V2V7+3J Juja, Kenya</p>' +
-                '<p class="text-sm">+(254)705893137</p>' +
-                '<a href="mailto:info@techsolutions.com" class="text-sm text-blue-600">info@techsolutions.com</a>' +
-            '</div>';
-        
-        // Create info window
-        const infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-        
-        // Open info window when marker is clicked
-        marker.addListener("click", () => {
-            infowindow.open(map, marker);
-        });
-        
-        // Show info window by default
-        infowindow.open(map, marker);
-    }
-</script>
     
     <!-- Newsletter Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-800 text-white">
+    <section class="py-16 firebase-header-gradient">
         <div class="container mx-auto px-6">
             <div class="max-w-3xl mx-auto text-center animate-fadeIn">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-                <p class="text-lg opacity-90 mb-8">Stay updated with the latest trends, insights, and news in technology and digital innovation.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">Subscribe to Our Newsletter</h2>
+                <p class="text-lg text-black opacity-80 mb-8">Stay updated with the latest trends, insights, and news in technology and digital innovation.</p>
                 <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4">
-                    <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg focus:outline-none text-gray-900">
-                    <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow transition">Subscribe</button>
+                    <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg focus:outline-none text-black bg-white bg-opacity-20 border-0 placeholder-black placeholder-opacity-60">
+                    <button type="submit" class="bg-black text-white font-semibold py-3 px-8 rounded-lg shadow hover:bg-opacity-90 transition">Subscribe</button>
                 </form>
-                <p class="mt-4 text-sm opacity-80">We respect your privacy. Unsubscribe at any time.</p>
+                <p class="mt-4 text-sm text-black opacity-70">We respect your privacy. Unsubscribe at any time.</p>
             </div>
         </div>
     </section>
     
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <footer class="bg-black text-white pt-16 pb-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Company Info -->
                 <div>
                     <a href="#" class="flex items-center mb-6">
-                        <span class="text-2xl font-bold text-white">Tech</span>
-                        <span class="text-2xl font-bold text-blue-400">Solutions</span>
+                        <span class="text-2xl font-bold text-white">Viventra</span>
+                        <span class="text-2xl font-bold gradient-text ml-1">Technologies</span>
                     </a>
                     <p class="text-gray-400 mb-6">Empowering businesses with innovative digital solutions since 2021.</p>
                     <div class="flex space-x-4">
@@ -1254,23 +1365,23 @@
                     <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <span class="text-gray-400">V2V7+3J Juja, Kenya</span>
                         </li>
                         <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <span class="text-gray-400">+(254)705893137</span>
                         </li>
                         <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span class="text-gray-400">info@techsolutions.com</span>
+                            <span class="text-gray-400">info@viventratech.com</span>
                         </li>
                     </ul>
                 </div>
@@ -1279,7 +1390,7 @@
             <hr class="border-gray-800 mb-8">
             
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 TechSolutions. All rights reserved.</p>
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 Viventra Technologies. All rights reserved.</p>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
                     <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
@@ -1288,846 +1399,730 @@
             </div>
         </div>
     </footer>
-<!-- Particles.js -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-<!-- Inline JavaScript -->
-<script>
-// Initialize Particles.js
-function initParticles() {
-    try {
-        if (document.getElementById('particles-js') && typeof particlesJS === 'function') {
-            // Updated Particles.js configuration with enhanced interactivity
-particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 80,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-        },
-        "color": {
-            "value": "#ffffff"
-        },
-        "shape": {
-            "type": "circle",
-            "stroke": {
-                "width": 0,
-                "color": "#000000"
-            }
-        },
-        "opacity": {
-            "value": 0.5,
-            "random": false,
-            "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
-        },
-        "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-            }
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 0.4,
-            "width": 1
-        },
-        "move": {
-            "enable": true,
-            "speed": 3,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
-        }
-    },
-    "interactivity": {
-        "detect_on": "window",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "repulse"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            },
-            "resize": true
-        },
-        "modes": {
-            "grab": {
-                "distance": 180,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
-            "bubble": {
-                "distance": 250,
-                "size": 6,
-                "duration": 2,
-                "opacity": 0.8,
-                "speed": 3
-            },
-            "repulse": {
-                "distance": 100,
-                "duration": 0.4
-            },
-            "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
-            }
-        }
-    },
-    "retina_detect": true
-});
-        }
-    } catch (error) {
-        console.error("Error initializing Particles.js:", error);
-    }
-}
-
-// Safe element selector with error handling
-function getElement(selector, parent) {
-    if (!parent) parent = document;
-    try {
-        return parent.querySelector(selector);
-    } catch (error) {
-        console.error("Error selecting element \"" + selector + "\":", error);
-        return null;
-    }
-}
-
-// Safe element selector for multiple elements with error handling
-function getElements(selector, parent) {
-    if (!parent) parent = document;
-    try {
-        return parent.querySelectorAll(selector);
-    } catch (error) {
-        console.error("Error selecting elements \"" + selector + "\":", error);
-        return [];
-    }
-}
-
-// Safe element ID selector with error handling
-function getElementById(id) {
-    try {
-        return document.getElementById(id);
-    } catch (error) {
-        console.error("Error selecting element with ID \"" + id + "\":", error);
-        return null;
-    }
-}
-
-// Find this function in your JavaScript code and replace it with this updated version
-function initDarkMode() {
-    var darkModeToggle = getElementById('dark-mode-toggle');
-    var moonIcon = getElementById('moon-icon');
-    var sunIcon = getElementById('sun-icon');
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    if (!darkModeToggle) return;
+    <!-- Google Maps Script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf4F8kag3WrwMIy8_L6yP3YPtSZzQDDH8&callback=initMap" async defer></script>
     
-    // Check for saved user preference
-    var darkMode = localStorage.getItem('darkMode');
-    
-    // Function to update particles colors for dark/light mode
-    function updateParticlesColors(isDark) {
-        try {
-            if (typeof pJSDom !== 'undefined' && pJSDom.length > 0 && pJSDom[0].pJS) {
-                // Get the particles.js instance
-                var particlesJS = pJSDom[0].pJS;
-                
-                // Update particle colors and background
-                if (isDark) {
-                    // Dark mode particles (lighter colored particles on dark background)
-                    particlesJS.particles.color.value = "#9fa8da"; // Light blueish purple
-                    particlesJS.particles.line_linked.color = "#9fa8da"; // Light blueish purple
-                    // Note: We don't need to change the canvas background as it's transparent
-                } else {
-                    // Light mode particles (default - white particles)
-                    particlesJS.particles.color.value = "#ffffff"; // White
-                    particlesJS.particles.line_linked.color = "#ffffff"; // White
-                }
-                
-                // Apply the changes
-                particlesJS.fn.particlesRefresh();
-            }
-        } catch (error) {
-            console.error("Error updating particles colors:", error);
-        }
-    }
-    
-    // Apply dark mode if saved preference exists
-    if (darkMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-        
-        if (moonIcon) moonIcon.classList.add('hidden');
-        if (sunIcon) sunIcon.classList.remove('hidden');
-        
-        // Update particles for dark mode
-        updateParticlesColors(true);
-        
-        // Update mobile menu links for dark mode
-        updateMobileMenuForDarkMode(true);
-    }
-    
-    darkModeToggle.addEventListener('click', function() {
-        // Toggle dark mode
-        var isDarkMode = document.body.classList.contains('dark-mode');
-        
-        if (isDarkMode) {
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('darkMode', 'disabled');
-            if (moonIcon) moonIcon.classList.remove('hidden');
-            if (sunIcon) sunIcon.classList.add('hidden');
+    <!-- JavaScript -->
+    <script>
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize functionality
+            handlePreloader();
+            initParticles();
+            setupThemeToggle();
+            setupMobileMenu();
+            setupSmoothScrolling();
+            setupBackToTop();
+            setupCounterAnimation();
+            setupFAQs();
+            setupContactForm();
+            setupNewsletterForm();
+            setupAnimationOnScroll();
             
-            // Update particles for light mode
-            updateParticlesColors(false);
-            
-            // Update mobile menu links for light mode
-            updateMobileMenuForDarkMode(false);
-        } else {
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('darkMode', 'enabled');
-            if (moonIcon) moonIcon.classList.add('hidden');
-            if (sunIcon) sunIcon.classList.remove('hidden');
-            
-            // Update particles for dark mode
-            updateParticlesColors(true);
-            
-            // Update mobile menu links for dark mode
-            updateMobileMenuForDarkMode(true);
-        }
-        
-        // Update navbar style when toggling dark mode
-        handleNavbarScroll();
-    });
-}
-
-// Update mobile menu styling based on dark mode
-function updateMobileMenuForDarkMode(isDarkMode) {
-    var mobileMenuLinks = getElements('.mobile-menu-link');
-    
-    for (var i = 0; i < mobileMenuLinks.length; i++) {
-        var link = mobileMenuLinks[i];
-        if (isDarkMode) {
-            link.classList.remove('text-gray-800', 'hover:text-blue-600');
-            link.classList.add('text-gray-200', 'hover:text-blue-400');
-        } else {
-            link.classList.remove('text-gray-200', 'hover:text-blue-400');
-            link.classList.add('text-gray-800', 'hover:text-blue-600');
-        }
-    }
-}
-
-// Handle navbar styles on scroll
-function handleNavbarScroll() {
-    var navbar = getElementById('navbar');
-    if (!navbar) return;
-    
-    var scrollPosition = window.scrollY;
-    var isDarkMode = document.body.classList.contains('dark-mode');
-    
-    if (scrollPosition > 100) {
-        navbar.classList.add('nav-sticky');
-        navbar.classList.remove('bg-transparent');
-        
-        if (isDarkMode) {
-            navbar.classList.add('bg-gray-900', 'shadow-md');
-            navbar.classList.remove('bg-white');
-        } else {
-            navbar.classList.add('bg-white', 'shadow-md');
-            navbar.classList.remove('bg-gray-900');
-        }
-        
-        // Change text color when background changes
-        var navLinks = getElements('a', navbar);
-        for (var i = 0; i < navLinks.length; i++) {
-            var link = navLinks[i];
-            link.classList.remove('text-white', 'hover:text-blue-200');
-            
-            if (isDarkMode) {
-                link.classList.add('text-gray-200', 'hover:text-blue-400');
-                link.classList.remove('text-gray-800', 'hover:text-blue-600');
-            } else {
-                link.classList.add('text-gray-800', 'hover:text-blue-600');
-                link.classList.remove('text-gray-200', 'hover:text-blue-400');
-            }
-        }
-        
-        // Change logo color
-        var logoSpans = getElements('a.logo > span', navbar);
-        if (logoSpans.length >= 2) {
-            logoSpans[0].classList.remove('text-white');
-            logoSpans[1].classList.remove('text-blue-300');
-            
-            if (isDarkMode) {
-                logoSpans[0].classList.add('text-blue-400');
-                logoSpans[0].classList.remove('text-blue-600');
-                logoSpans[1].classList.add('text-gray-200');
-                logoSpans[1].classList.remove('text-gray-800');
-            } else {
-                logoSpans[0].classList.add('text-blue-600');
-                logoSpans[0].classList.remove('text-blue-400');
-                logoSpans[1].classList.add('text-gray-800');
-                logoSpans[1].classList.remove('text-gray-200');
-            }
-        }
-        
-        // Change dark mode toggle color
-        var darkModeToggle = getElementById('dark-mode-toggle');
-        if (darkModeToggle) {
-            darkModeToggle.classList.remove('text-white');
-            if (isDarkMode) {
-                darkModeToggle.classList.add('text-gray-200');
-                darkModeToggle.classList.remove('text-gray-800');
-            } else {
-                darkModeToggle.classList.add('text-gray-800');
-                darkModeToggle.classList.remove('text-gray-200');
-            }
-        }
-        
-        // Change mobile menu button color
-        var mobileMenuButton = getElementById('mobile-menu-button');
-        if (mobileMenuButton) {
-            mobileMenuButton.classList.remove('text-white');
-            if (isDarkMode) {
-                mobileMenuButton.classList.add('text-gray-200');
-                mobileMenuButton.classList.remove('text-gray-800');
-            } else {
-                mobileMenuButton.classList.add('text-gray-800');
-                mobileMenuButton.classList.remove('text-gray-200');
-            }
-        }
-    } else {
-        navbar.classList.remove('nav-sticky', 'bg-white', 'bg-gray-900', 'shadow-md');
-        navbar.classList.add('bg-transparent');
-        
-        // Revert text color
-        var navLinks = getElements('a', navbar);
-        for (var i = 0; i < navLinks.length; i++) {
-            var link = navLinks[i];
-            link.classList.remove('text-gray-800', 'hover:text-blue-600', 'text-gray-200', 'hover:text-blue-400');
-            link.classList.add('text-white', 'hover:text-blue-200');
-        }
-        
-        // Revert logo color
-        var logoSpans = getElements('a.logo > span', navbar);
-        if (logoSpans.length >= 2) {
-            logoSpans[0].classList.remove('text-blue-600', 'text-blue-400');
-            logoSpans[0].classList.add('text-white');
-            logoSpans[1].classList.remove('text-gray-800', 'text-gray-200');
-            logoSpans[1].classList.add('text-blue-300');
-        }
-        
-        // Revert dark mode toggle color
-        var darkModeToggle = getElementById('dark-mode-toggle');
-        if (darkModeToggle) {
-            darkModeToggle.classList.remove('text-gray-800', 'text-gray-200');
-            darkModeToggle.classList.add('text-white');
-        }
-        
-        // Revert mobile menu button color
-        var mobileMenuButton = getElementById('mobile-menu-button');
-        if (mobileMenuButton) {
-            mobileMenuButton.classList.remove('text-gray-800', 'text-gray-200');
-            mobileMenuButton.classList.add('text-white');
-        }
-    }
-    
-    // Back to top button
-    var backToTopButton = getElementById('back-to-top');
-    if (backToTopButton) {
-        if (scrollPosition > 300) {
-            backToTopButton.classList.remove('opacity-0');
-            backToTopButton.classList.add('opacity-100');
-        } else {
-            backToTopButton.classList.remove('opacity-100');
-            backToTopButton.classList.add('opacity-0');
-        }
-    }
-}
-
-// Mobile Menu Functionality
-function setupMobileMenu() {
-    var mobileMenuButton = getElementById('mobile-menu-button');
-    var mobileMenuClose = getElementById('mobile-menu-close');
-    var mobileMenu = getElementById('mobile-menu');
-    var mobileMenuOverlay = getElementById('mobile-menu-overlay');
-    
-    if (!mobileMenuButton || !mobileMenu) return;
-    
-    // Open mobile menu
-    mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.add('active');
-        if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-    
-    // Close mobile menu
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('active');
-        if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-    }
-    
-    if (mobileMenuOverlay) {
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Close mobile menu when clicking on links
-    var mobileMenuLinks = getElements('.mobile-menu-link');
-    for (var i = 0; i < mobileMenuLinks.length; i++) {
-        mobileMenuLinks[i].addEventListener('click', closeMobileMenu);
-    }
-    
-    // Update mobile menu styling based on dark mode
-    var isDarkMode = document.body.classList.contains('dark-mode');
-    updateMobileMenuForDarkMode(isDarkMode);
-}
-
-// Handle counters animation
-function animateCounters() {
-    var counters = getElements('.count-number');
-    var speed = 200;
-    
-    for (var i = 0; i < counters.length; i++) {
-        var counter = counters[i];
-        var dataCount = counter.getAttribute('data-count');
-        if (!dataCount || isNaN(parseInt(dataCount))) {
-            console.error('Invalid data-count attribute:', dataCount);
-            return;
-        }
-        
-        (function(counter, dataCount) {
-            var count = 0;
-            var target = parseInt(dataCount);
-            var increment = Math.ceil(target / speed);
-            
-            var animate = function() {
-                if (count < target) {
-                    count += increment;
-                    if (count > target) {
-                        count = target;
-                    }
-                    counter.innerText = count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    setTimeout(animate, 1);
-                }
-            };
-            
-            animate();
-        })(counter, dataCount);
-    }
-}
-
-// FAQ accordions
-function setupFAQs() {
-    var faqButtons = getElements('.faq-button');
-    
-    for (var i = 0; i < faqButtons.length; i++) {
-        faqButtons[i].addEventListener('click', function() {
-            var answer = this.nextElementSibling;
-            var icon = getElement('svg', this);
-            
-            if (!answer || !icon) return;
-            
-            // Close all other FAQs
-            var allAnswers = getElements('.faq-answer');
-            for (var j = 0; j < allAnswers.length; j++) {
-                var item = allAnswers[j];
-                if (item !== answer && !item.classList.contains('hidden')) {
-                    item.classList.add('hidden');
-                    var otherButton = item.previousElementSibling;
-                    if (otherButton) {
-                        var otherIcon = getElement('svg', otherButton);
-                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                    }
-                }
-            }
-            
-            // Toggle current FAQ
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                answer.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-    }
-}
-
-// Form validation
-function validateForm(formElement, fieldName) {
-    var field = getElement('#' + fieldName, formElement);
-    if (!field) {
-        console.error('Field "' + fieldName + '" not found');
-        return false;
-    }
-    
-    var errorMessage = field.nextElementSibling;
-    if (!errorMessage) {
-        console.error('Error message element for "' + fieldName + '" not found');
-        return false;
-    }
-    
-    var isValid = true;
-    
-    // Field-specific validations
-    if (!field.value.trim()) {
-        // Convert field names to user-friendly labels
-        var fieldLabel;
-        switch(fieldName) {
-            case 'email':
-                fieldLabel = 'Email address';
-                break;
-            case 'message':
-                fieldLabel = 'Message';
-                break;
-            default:
-                // Capitalize first letter of the field name
-                fieldLabel = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
-        }
-        
-        errorMessage.textContent = fieldLabel + ' is required';
-        errorMessage.classList.remove('hidden');
-        field.classList.add('border-red-500');
-        isValid = false;
-    } else if (fieldName === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-        errorMessage.textContent = 'Please enter a valid email address';
-        errorMessage.classList.remove('hidden');
-        field.classList.add('border-red-500');
-        isValid = false;
-    } else {
-        errorMessage.classList.add('hidden');
-        field.classList.remove('border-red-500');
-    }
-    
-    return isValid;
-}
-
-// Form submission
-function setupContactForm() {
-    var form = getElementById('contactForm');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Prepare field validations
-            var fields = ['name', 'email', 'subject', 'message'];
-            var validations = {};
-            
-            // Validate all form fields
-            for (var i = 0; i < fields.length; i++) {
-                var fieldName = fields[i];
-                validations[fieldName] = validateForm(form, fieldName);
-            }
-            
-            // Check consent checkbox
-            var consentField = getElement('#consent', form);
-            var isConsentValid = true;
-            
-            if (consentField) {
-                var consentError = consentField.parentElement.nextElementSibling;
-                
-                if (!consentField.checked) {
-                    if (consentError) {
-                        consentError.textContent = 'You must consent to the storage of your information';
-                        consentError.classList.remove('hidden');
-                    }
-                    isConsentValid = false;
-                } else {
-                    if (consentError) {
-                        consentError.classList.add('hidden');
-                    }
-                }
-            }
-            
-            // Submit if all validations pass
-            var allFieldsValid = true;
-            for (var key in validations) {
-                if (!validations[key]) {
-                    allFieldsValid = false;
-                    break;
-                }
-            }
-            
-            if (allFieldsValid && isConsentValid) {
-                // Here you would normally send the form data to your server
-                // For demonstration, we'll just show a success message
-                
-                form.innerHTML = 
-                    '<div class="text-center py-8">' +
-                        '<div class="bg-green-100 text-green-600 w-16 h-16 rounded-full mx-auto flex items-center justify-center mb-4">' +
-                            '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
-                                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>' +
-                            '</svg>' +
-                        '</div>' +
-                        '<h3 class="text-xl font-semibold mb-2">Message Sent!</h3>' +
-                        '<p class="text-gray-600">Thank you for contacting us. We\'ll get back to you shortly.</p>' +
-                    '</div>';
-            }
+            // Handle navbar styles on scroll
+            window.addEventListener('scroll', handleNavbarScroll);
         });
         
-        // Real-time validation when fields lose focus
-        var fieldNames = ['name', 'email', 'subject', 'message'];
-        for (var i = 0; i < fieldNames.length; i++) {
-            (function(fieldName) {
-                var field = getElement('#' + fieldName, form);
-                if (field) {
-                    field.addEventListener('blur', function() {
-                        validateForm(form, fieldName);
-                    });
-                }
-            })(fieldNames[i]);
-        }
-    }
-}
-
-// Newsletter form
-function setupNewsletterForm() {
-    var form = getElementById('newsletter-form');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            var emailInput = getElement('input[type="email"]', form);
-            if (!emailInput) {
-                console.error('Email input not found in newsletter form');
-                return;
-            }
-            
-            if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
-                emailInput.classList.add('border', 'border-red-500');
-                return;
-            }
-            
-            // Reset styling
-            emailInput.classList.remove('border', 'border-red-500');
-            
-            // Here you would normally send the subscription request to your server
-            // For demonstration, we'll just clear the input and show success via button color
-            emailInput.value = '';
-            var button = getElement('button', form);
-            
-            if (button) {
-                var originalBgColor = button.classList.contains('bg-blue-700') ? 'bg-blue-700' : 'bg-blue-600';
-                
-                button.classList.remove(originalBgColor);
-                button.classList.add('bg-green-600');
-                button.textContent = 'Subscribed!';
-                
-                setTimeout(function() {
-                    button.classList.remove('bg-green-600');
-                    button.classList.add(originalBgColor);
-                    button.textContent = 'Subscribe';
-                }, 2000);
-            }
-        });
-    }
-}
-
-// Setup smooth scrolling
-function setupSmoothScrolling() {
-    var anchors = getElements('a[href^="#"]');
-    for (var i = 0; i < anchors.length; i++) {
-        anchors[i].addEventListener('click', function(e) {
-            var targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            var targetElement = getElementById(targetId.substring(1));
-            if (targetElement) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
+        // Initialize particles with Firebase theme colors
+        function initParticles() {
+            if (document.getElementById('particles-js') && typeof particlesJS === 'function') {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": ["#ffca28", "#ffa000", "#f57c00", "#ff8c1a"]
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": true,
+                                "speed": 2,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffca28",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 3,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": true,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 180,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 250,
+                                "size": 6,
+                                "duration": 2,
+                                "opacity": 0.8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 100,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
                 });
             }
-        });
-    }
-}
-
-// Setup back to top button
-function setupBackToTop() {
-    var backToTopButton = getElementById('back-to-top');
-    if (backToTopButton) {
-        backToTopButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-}
-
-// Setup animation on scroll
-function setupAnimationOnScroll() {
-    if ('IntersectionObserver' in window) {
-        var observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        }
         
-        var animateOnScrollObserver = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-                var entry = entries[i];
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    animateOnScrollObserver.unobserve(entry.target);
+        // Setup dark/light mode toggle
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            
+            // Function to toggle theme
+            function toggleTheme() {
+                const html = document.documentElement;
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                    
+                    // Update particles for light mode
+                    updateParticlesForLightMode();
+                } else {
+                    html.classList.remove('light');
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    
+                    // Update particles for dark mode
+                    updateParticlesForDarkMode();
                 }
             }
-        }, observerOptions);
-        
-        var elements = getElements('.animate-fadeIn');
-        for (var i = 0; i < elements.length; i++) {
-            animateOnScrollObserver.observe(elements[i]);
+            
+            // Add event listeners to toggles
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            if (themeToggleMobile) {
+                themeToggleMobile.addEventListener('click', toggleTheme);
+            }
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                updateParticlesForLightMode();
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                updateParticlesForDarkMode();
+            }
         }
-    } else {
-        // Fallback for browsers that don't support IntersectionObserver
-        var elements = getElements('.animate-fadeIn');
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.add('visible');
-        }
-    }
-}
-
-// Setup counter animation on scroll
-function setupCounterAnimation() {
-    // Only setup if there are counter elements
-    if (getElements('.count-number').length > 0) {
-        // Check for both class selectors to make sure it works in both light and dark mode
-        var statsSection = getElement('.py-16.bg-white') || getElement('.py-16.bg-gray-900');
         
-        if (statsSection && 'IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function(entries, observer) {
-                for (var i = 0; i < entries.length; i++) {
-                    var entry = entries[i];
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        observer.unobserve(entry.target);
+        // Update particles for light mode
+        function updateParticlesForLightMode() {
+            try {
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0 && pJSDom[0].pJS) {
+                    var particlesJS = pJSDom[0].pJS;
+                    particlesJS.particles.color.value = ["#ffa000", "#f57c00", "#ff8c1a", "#ffb74d"];
+                    particlesJS.particles.line_linked.color = "#f57c00";
+                    particlesJS.particles.opacity.value = 0.7;
+                    particlesJS.fn.particlesRefresh();
+                }
+            } catch (error) {
+                console.error("Error updating particles for light mode:", error);
+            }
+        }
+        
+        // Update particles for dark mode
+        function updateParticlesForDarkMode() {
+            try {
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0 && pJSDom[0].pJS) {
+                    var particlesJS = pJSDom[0].pJS;
+                    particlesJS.particles.color.value = ["#ffca28", "#ffa000", "#f57c00", "#ff8c1a"];
+                    particlesJS.particles.line_linked.color = "#ffca28";
+                    particlesJS.particles.opacity.value = 0.5;
+                    particlesJS.fn.particlesRefresh();
+                }
+            } catch (error) {
+                console.error("Error updating particles for dark mode:", error);
+            }
+        }
+        
+        // Handle preloader
+        function handlePreloader() {
+            var preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(function() {
+                    preloader.style.opacity = '0';
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
+        }
+        
+        // Setup mobile menu
+        function setupMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            
+            if (mobileMenuButton && mobileMenu) {
+                // Open mobile menu
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.add('active');
+                    if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                // Close mobile menu function
+                function closeMobileMenu() {
+                    mobileMenu.classList.remove('active');
+                    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+					document.body.style.overflow = '';
+                }
+                
+                // Close mobile menu when X button is clicked
+                if (mobileMenuClose) {
+                    mobileMenuClose.addEventListener('click', closeMobileMenu);
+                }
+                
+                // Close mobile menu when overlay is clicked
+                if (mobileMenuOverlay) {
+                    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+                }
+                
+                // Close mobile menu when a link is clicked
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+            }
+        }
+        
+        // Handle navbar styles on scroll
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            const scrollPosition = window.scrollY;
+            
+            if (navbar) {
+                if (scrollPosition > 100) {
+                    navbar.classList.add('nav-sticky');
+                    
+                    // Update navigation links color based on theme
+                    const navLinks = navbar.querySelectorAll('a');
+                    const isDarkTheme = document.documentElement.classList.contains('dark');
+                    
+                    navLinks.forEach(link => {
+                        if (!link.classList.contains('firebase-button')) {
+                            link.classList.remove('text-white', 'hover:text-blue-200');
+                            
+                            if (isDarkTheme) {
+                                link.classList.add('text-gray-200', 'hover:text-amber-300');
+                            } else {
+                                link.classList.add('text-gray-800', 'hover:text-amber-600');
+                            }
+                        }
+                    });
+                } else {
+                    navbar.classList.remove('nav-sticky');
+                    
+                    // Restore original navigation links color
+                    const navLinks = navbar.querySelectorAll('a');
+                    
+                    navLinks.forEach(link => {
+                        if (!link.classList.contains('firebase-button')) {
+                            link.classList.remove('text-gray-200', 'hover:text-amber-300', 'text-gray-800', 'hover:text-amber-600');
+                            link.classList.add('text-white', 'hover:text-blue-200');
+                        }
+                    });
+                }
+            }
+            
+            // Back to top button
+            const backToTopButton = document.getElementById('back-to-top');
+            if (backToTopButton) {
+                if (scrollPosition > 300) {
+                    backToTopButton.classList.remove('opacity-0');
+                    backToTopButton.classList.add('opacity-100');
+                } else {
+                    backToTopButton.classList.remove('opacity-100');
+                    backToTopButton.classList.add('opacity-0');
+                }
+            }
+        }
+        
+        // Setup back to top button
+        function setupBackToTop() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+        
+        // Setup smooth scrolling
+        function setupSmoothScrolling() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Setup counter animation
+        function setupCounterAnimation() {
+            const counterElements = document.querySelectorAll('.count-number');
+            
+            if (counterElements.length > 0) {
+                // Create IntersectionObserver to trigger animation when counters are visible
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const targetValue = parseInt(counter.getAttribute('data-count'));
+                            let currentValue = 0;
+                            const increment = Math.ceil(targetValue / 100);
+                            const duration = 2000; // ms
+                            const steps = 100;
+                            const stepDuration = duration / steps;
+                            
+                            const updateCounter = () => {
+                                currentValue += increment;
+                                
+                                if (currentValue >= targetValue) {
+                                    counter.textContent = targetValue;
+                                    observer.unobserve(counter);
+                                } else {
+                                    counter.textContent = currentValue;
+                                    setTimeout(updateCounter, stepDuration);
+                                }
+                            };
+                            
+                            updateCounter();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                // Observe each counter element
+                counterElements.forEach(counter => {
+                    observer.observe(counter);
+                });
+            }
+        }
+        
+        // Setup FAQ accordions
+        function setupFAQs() {
+            const faqButtons = document.querySelectorAll('.faq-button');
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            
+            if (faqButtons.length > 0) {
+                // Show first FAQ by default
+                if (faqButtons[0] && faqAnswers[0]) {
+                    faqAnswers[0].classList.remove('hidden');
+                    const firstButtonIcon = faqButtons[0].querySelector('svg');
+                    if (firstButtonIcon) {
+                        firstButtonIcon.style.transform = 'rotate(180deg)';
                     }
                 }
-            }, { threshold: 0.5 });
+                
+                // Add click event to each FAQ button
+                faqButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const answer = this.nextElementSibling;
+                        const icon = this.querySelector('svg');
+                        
+                        if (!answer || !icon) return;
+                        
+                        // Toggle current FAQ
+                        if (answer.classList.contains('hidden')) {
+                            // Close all other FAQs
+                            faqAnswers.forEach(item => {
+                                if (item !== answer) {
+                                    item.classList.add('hidden');
+                                }
+                            });
+                            
+                            // Reset all other icons
+                            faqButtons.forEach(btn => {
+                                if (btn !== button) {
+                                    const btnIcon = btn.querySelector('svg');
+                                    if (btnIcon) {
+                                        btnIcon.style.transform = 'rotate(0deg)';
+                                    }
+                                }
+                            });
+                            
+                            // Show current FAQ
+                            answer.classList.remove('hidden');
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            // Hide current FAQ
+                            answer.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                });
+            }
+        }
+        
+        // Setup animation on scroll
+        function setupAnimationOnScroll() {
+            const animatedElements = document.querySelectorAll('.animate-fadeIn');
             
-            observer.observe(statsSection);
-        } else {
-            // Fallback if IntersectionObserver not supported or element not found
-            animateCounters();
-        }
-    }
-}
-
-// Show first FAQ by default
-function showFirstFAQ() {
-    var firstFaqButton = getElement('.faq-button');
-    if (firstFaqButton) {
-        firstFaqButton.click();
-    }
-}
-
-// Handle preloader
-function handlePreloader() {
-    var preloader = getElementById('preloader');
-    if (preloader) {
-        setTimeout(function() {
-            preloader.style.opacity = '0';
-            setTimeout(function() {
-                preloader.style.display = 'none';
-            }, 500);
-        }, 1000);  // Show preloader for at least 1 second
-    }
-}
-
-// Main initialization function
-function initWebsite() {
-    handlePreloader();
-    initParticles();
-    initDarkMode();
-    handleNavbarScroll();
-    setupMobileMenu();
-    setupSmoothScrolling();
-    setupBackToTop();
-    setupCounterAnimation();
-    setupFAQs();
-    setupContactForm();
-    setupNewsletterForm();
-    setupAnimationOnScroll();
-    showFirstFAQ();
-    
-    // Set up scroll event listener
-    window.addEventListener('scroll', handleNavbarScroll);
-    
-    // Debounced resize handler for performance
-    var resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            // Recalculate any layout-dependent features
-            handleNavbarScroll();
-        }, 250);
-    });
-}
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initWebsite);
-
-// Expose a global API to allow for manual initialization or re-initialization
-window.websiteUtils = {
-    init: initWebsite,
-    darkMode: {
-        toggle: function() {
-            var darkModeToggle = getElementById('dark-mode-toggle');
-            if (darkModeToggle) darkModeToggle.click();
-        },
-        enable: function() {
-            if (!document.body.classList.contains('dark-mode')) {
-                var darkModeToggle = getElementById('dark-mode-toggle');
-                if (darkModeToggle) darkModeToggle.click();
-            }
-        },
-        disable: function() {
-            if (document.body.classList.contains('dark-mode')) {
-                var darkModeToggle = getElementById('dark-mode-toggle');
-                if (darkModeToggle) darkModeToggle.click();
+            if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                animatedElements.forEach(element => {
+                    observer.observe(element);
+                });
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                animatedElements.forEach(element => {
+                    element.classList.add('visible');
+                });
             }
         }
-    }
-};
-</script>
-<!-- Google Maps Script - Add this before the closing body tag -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf4F8kag3WrwMIy8_L6yP3YPtSZzQDDH8&callback=initMap" async defer></script>
-<!-- Also fix your image placeholder URLs -->
-<!-- Find and replace any references to via.placeholder.com with placehold.co -->
-<!-- Example: -->
-<!-- <img src="https://via.placeholder.com/600x400" alt="..." /> -->
-<!-- to -->
-<!-- <img src="https://placehold.co/600x400" alt="..." /> -->
+        
+        // Setup contact form
+        function setupContactForm() {
+            const form = document.getElementById('contactForm');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple form validation
+                    const nameInput = document.getElementById('contact-name');
+                    const emailInput = document.getElementById('contact-email');
+                    const subjectInput = document.getElementById('contact-subject');
+                    const messageInput = document.getElementById('contact-message');
+                    const consentInput = document.getElementById('consent');
+                    
+                    let isValid = true;
+                    
+                    // Validate name
+                    if (!nameInput.value.trim()) {
+                        const nameError = nameInput.nextElementSibling;
+                        nameError.textContent = 'Name is required';
+                        nameError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        const nameError = nameInput.nextElementSibling;
+                        nameError.classList.add('hidden');
+                    }
+                    
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                        const emailError = emailInput.nextElementSibling;
+                        emailError.textContent = 'Valid email is required';
+                        emailError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        const emailError = emailInput.nextElementSibling;
+                        emailError.classList.add('hidden');
+                    }
+                    
+                    // Validate subject
+                    if (!subjectInput.value.trim()) {
+                        const subjectError = subjectInput.nextElementSibling;
+                        subjectError.textContent = 'Subject is required';
+                        subjectError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        const subjectError = subjectInput.nextElementSibling;
+                        subjectError.classList.add('hidden');
+                    }
+                    
+                    // Validate message
+                    if (!messageInput.value.trim()) {
+                        const messageError = messageInput.nextElementSibling;
+                        messageError.textContent = 'Message is required';
+                        messageError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        const messageError = messageInput.nextElementSibling;
+                        messageError.classList.add('hidden');
+                    }
+                    
+                    // Validate consent
+                    if (!consentInput.checked) {
+                        const consentError = consentInput.parentElement.nextElementSibling;
+                        consentError.textContent = 'Please agree to the terms';
+                        consentError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        const consentError = consentInput.parentElement.nextElementSibling;
+                        consentError.classList.add('hidden');
+                    }
+                    
+                    // Submit form if valid
+                    if (isValid) {
+                        // In a real application, you would send the form data to your server here
+                        
+                        // For this demo, we'll just show a success message
+                        form.innerHTML = `
+                            <div class="text-center py-8">
+                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-opacity-10 bg-green-500 text-green-500 mb-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Message Sent!</h3>
+                                <p class="text-gray-600">Thank you for contacting us. We'll get back to you shortly.</p>
+                            </div>
+                        `;
+                    }
+                });
+            }
+        }
+        
+        // Setup newsletter form
+        function setupNewsletterForm() {
+            const form = document.getElementById('newsletter-form');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const emailInput = form.querySelector('input[type="email"]');
+                    
+                    if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                        emailInput.classList.add('border', 'border-red-500');
+                        return;
+                    }
+                    
+                    // Reset input styles
+                    emailInput.classList.remove('border', 'border-red-500');
+                    emailInput.value = '';
+                    
+                    // In a real application, you would send the subscription request to your server here
+                    
+                    // For this demo, we'll just update the button text
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    
+                    submitButton.textContent = 'Subscribed!';
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                    }, 3000);
+                });
+            }
+        }
+        
+        // Initialize Google Map
+        function initMap() {
+            const mapElement = document.getElementById('contact-map');
+            
+            if (mapElement) {
+                const mapOptions = {
+                    center: { lat: -1.102554, lng: 37.013193 }, // Juja, Kenya coordinates
+                    zoom: 15,
+                    styles: [
+                        {
+                            "featureType": "all",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#1e1e1e"}]
+                        },
+                        {
+                            "featureType": "all",
+                            "elementType": "labels.text.fill",
+                            "stylers": [{"color": "#ffffff"}]
+                        },
+                        {
+                            "featureType": "all",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [{"visibility": "on"}, {"color": "#000000"}, {"weight": 2}]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#000000"}]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{"color": "#383838"}, {"weight": 1}]
+                        },
+                        {
+                            "featureType": "landscape",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#121212"}]
+                        },
+                        {
+                            "featureType": "poi",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#1e1e1e"}]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#383838"}]
+                        },
+                        {
+                            "featureType": "road",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{"color": "#262626"}, {"weight": 0.5}]
+                        },
+                        {
+                            "featureType": "water",
+                            "elementType": "geometry.fill",
+                            "stylers": [{"color": "#0e0e0e"}]
+                        }
+                    ]
+                };
+                
+                // Create map
+                const map = new google.maps.Map(mapElement, mapOptions);
+                
+                // Create marker
+                const marker = new google.maps.Marker({
+                    position: mapOptions.center,
+                    map: map,
+                    title: "Viventra Technologies",
+                    animation: google.maps.Animation.DROP
+                });
+                
+                // Create info window
+                const infoContent = `
+                    <div class="p-3" style="font-family: Inter, sans-serif; color: #333;">
+                        <h3 style="font-weight: 600; color: #f57c00; margin-bottom: 8px;">Viventra Technologies</h3>
+                        <p style="font-size: 14px; margin-bottom: 5px;">V2V7+3J Juja, Kenya</p>
+                        <p style="font-size: 14px; margin-bottom: 5px;">+(254)705893137</p>
+                        <a href="mailto:info@viventratech.com" style="font-size: 14px; color: #f57c00; text-decoration: none;">info@viventratech.com</a>
+                    </div>
+                `;
+                
+                const infoWindow = new google.maps.InfoWindow({
+                    content: infoContent
+                });
+                
+                // Open info window when marker is clicked
+                marker.addListener('click', () => {
+                    infoWindow.open(map, marker);
+                });
+                
+                // Open info window by default
+                infoWindow.open(map, marker);
+                
+                // Update map styles when theme changes
+                document.addEventListener('themeChange', () => {
+                    const isDarkTheme = document.documentElement.classList.contains('dark');
+                    
+                    if (isDarkTheme) {
+                        map.setOptions({ styles: mapOptions.styles });
+                    } else {
+                        map.setOptions({ styles: [] }); // Default light theme
+                    }
+                });
+            }
+        }
+        
+        // Helper function to safely get element
+        function getElement(selector) {
+            return document.querySelector(selector);
+        }
+        
+        // Helper function to safely get elements
+        function getElements(selector) {
+            return document.querySelectorAll(selector);
+        }
+        
+        // Expose functions to global scope for use by Google Maps callback
+        window.initMap = initMap;
+    </script>
 </body>
 </html>
